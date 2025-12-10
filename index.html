@@ -4,243 +4,262 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smart Height Detector - SMK KAL 1 Surabaya</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* ---------------- GLOBAL STYLE ---------------- */
+/* ==== GLOBAL ==== */
 body {
-  margin:0;
-  font-family:'Orbitron', sans-serif;
-  background:#030814;
-  color:white;
-  overflow-x:hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #0a0f2f, #030611 70%);
+  color: #dbeafe;
+  overflow-x: hidden;
 }
 
-/* Neon Grid Background */
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(#113,#113) center/100% 100%,
-    repeating-linear-gradient(90deg,rgba(0,150,255,0.25) 0 2px, transparent 2px 60px),
-    repeating-linear-gradient(0deg,rgba(0,150,255,0.25) 0 2px, transparent 2px 60px);
-  z-index:-3;
+h1, h2, h3 { margin: 0; }
+
+/* ==== BACKGROUND PARTICLES ==== */
+#particles {
+  position: fixed;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Floating Particles */
-@keyframes float {
-  0% {transform:translateY(0) translateX(0);}
-  100% {transform:translateY(-50px) translateX(20px);}
-}
-.particle {
-  position:fixed;
-  width:8px; height:8px;
-  background:#00d0ff;
-  box-shadow:0 0 12px #00d0ff;
-  border-radius:50%;
-  top:calc(100% * var(--r));
-  left:calc(100% * var(--c));
-  opacity:0.6;
-  animation:float calc(4s * var(--t)) linear infinite alternate;
-  z-index:-2;
-}
-
-/* ---------------- HEADER ---------------- */
+/* ==== HEADER ==== */
 header {
-  text-align:center;
-  padding:25px;
-}
-header h1 {
-  font-size:2.4rem;
-  font-weight:900;
-  color:#00aaff;
-  text-shadow:0 0 12px #00aaff;
-  margin-bottom:12px;
-}
-header .sub {
-  font-size:1.2rem;
-  letter-spacing:2px;
-  opacity:0.9;
-  color:#66d0ff;
-  text-shadow:0 0 10px #009dff;
+  text-align: center;
+  padding: 25px 10px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
 }
 
-/* ---------------- CARD ---------------- */
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #60a5fa;
+  text-shadow: 0 0 12px #1d4ed8, 0 0 25px #1e40af;
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 8px #3b82f6; }
+  to   { text-shadow: 0 0 20px #60a5fa; }
+}
+
+.school-name {
+  margin-top: 5px;
+  font-size: 1rem;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+/* ==== CARD ==== */
 .card {
-  max-width:900px;
-  margin:40px auto;
-  padding:35px;
-  background:rgba(0,20,40,0.6);
-  backdrop-filter:blur(12px);
-  border-radius:24px;
-  border:2px solid rgba(0,150,255,0.4);
-  box-shadow:0 0 30px rgba(0,150,255,0.25);
-  animation:fadeIn 1.2s ease;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  background: rgba(30,58,138,0.25);
+  border: 1px solid rgba(96,165,250,0.4);
+  box-shadow: 0 0 20px rgba(30,64,175,0.4);
+  border-radius: 22px;
+  padding: 25px;
+  backdrop-filter: blur(15px);
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1s;
 }
 
-@keyframes fadeIn {
-  from{opacity:0; transform:translateY(25px);}
-  to{opacity:1; transform:translateY(0);}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.card-title {
-  font-size:1.8rem;
-  margin-bottom:25px;
-  color:#66d6ff;
-  text-shadow:0 0 10px #009dff;
-  display:flex;
-  align-items:center;
-  gap:12px;
+/* ==== INPUT NAMA ==== */
+.input-group {
+  margin-bottom: 20px;
 }
 
-/* ---------------- INPUT NAMA ---------------- */
-input {
-  width:100%;
-  padding:15px;
-  margin-bottom:20px;
-  background:rgba(255,255,255,0.1);
-  border:none;
-  border-radius:12px;
-  color:white;
-  font-size:1rem;
-  outline:none;
-  box-shadow:0 0 10px rgba(0,140,255,0.4);
+label {
+  font-size: 1rem;
+  opacity: 0.85;
 }
 
-/* ---------------- VALUE & BAR ---------------- */
-.height-display {
-  text-align:center;
-  margin:25px 0;
+input[type="text"] {
+  width: 100%;
+  padding: 13px;
+  margin-top: 6px;
+  font-size: 1rem;
+  border-radius: 12px;
+  outline: none;
+  border: 2px solid #1d4ed8;
+  background: rgba(255,255,255,0.1);
+  color: #dbeafe;
+  transition: 0.3s;
 }
+
+input[type="text"]:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 12px #3b82f6;
+}
+
+/* ==== HEIGHT DISPLAY ==== */
 .height-value {
-  font-size:5rem;
-  font-weight:900;
-  background:linear-gradient(90deg,#00eaff,#008cff);
-  -webkit-background-clip:text;
-  color:transparent;
-  text-shadow:0 0 15px #00aaff;
+  font-size: 4.5rem;
+  font-weight: 800;
+  text-align: center;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(96,165,250,0.4);
 }
 
-.scanner {
-  width:100%;
-  height:6px;
-  background:linear-gradient(to right,transparent, #00eaff, transparent);
-  animation:scan 3s linear infinite;
-}
-@keyframes scan {
-  0% {background-position:-200px 0;}
-  100% {background-position:200px 0;}
+.unit {
+  font-size: 1.3rem;
+  opacity: 0.7;
+  text-align: center;
+  margin-top: -15px;
 }
 
-.progress-bar {
-  width:100%;
-  height:14px;
-  background:rgba(255,255,255,0.1);
-  border-radius:10px;
-  overflow:hidden;
-  margin-top:12px;
+/* ==== METER BAR ==== */
+.progress {
+  width: 100%;
+  height: 15px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 15px;
 }
+
 .progress-fill {
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#00ffcc,#0099ff);
-  transition:width 1s ease;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#2563eb,#9333ea);
+  transition: width 0.8s ease;
 }
 
-/* ---------------- STATUS ---------------- */
-.status-box {
-  margin-top:25px;
-  padding:18px;
-  border-left:4px solid #00ffcc;
-  background:rgba(0,255,200,0.15);
-  border-radius:0 15px 15px 0;
-  font-size:1.1rem;
-}
-
-/* ---------------- BUTTON ---------------- */
+/* ==== BUTTON ==== */
 .btn {
-  padding:15px 30px;
-  font-size:1.2rem;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg,#006eff,#00aaff);
-  color:white;
-  cursor:pointer;
-  margin-top:25px;
-  width:100%;
-  transition:0.3s;
-  box-shadow:0 0 15px #009dff;
-}
-.btn:hover {
-  transform:scale(1.04);
-  box-shadow:0 0 25px #00ccff;
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  background: linear-gradient(90deg,#1d4ed8,#60a5fa);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  text-transform: uppercase;
 }
 
-/* ---------------- FOOTER ---------------- */
-footer {
-  margin-top:40px;
-  text-align:center;
-  opacity:0.7;
-  padding:20px;
-  font-size:0.9rem;
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #3b82f6;
+}
+
+/* ==== STATUS ==== */
+.status {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 1.1rem;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Particle Floating Background -->
-<div class="particle" style="--r:0.2;--c:0.1;--t:1"></div>
-<div class="particle" style="--r:0.4;--c:0.7;--t:2"></div>
-<div class="particle" style="--r:0.7;--c:0.3;--t:1.6"></div>
-<div class="particle" style="--r:0.85;--c:0.9;--t:1.3"></div>
-<div class="particle" style="--r:0.1;--c:0.8;--t:1.8"></div>
+<canvas id="particles"></canvas>
 
 <header>
-  <h1>SMART HEIGHT DETECTOR</h1>
-  <div class="sub">SMK KAL 1 SURABAYA</div>
+  <div class="title">SMART HEIGHT DETECTOR</div>
+  <div class="school-name">SMK KAL 1 SURABAYA</div>
 </header>
 
 <div class="card">
-  <div class="card-title"><i class="fas fa-robot"></i> Robotic Height Scanner</div>
 
-  <input id="studentName" placeholder="Masukkan Nama Siswa...">
-
-  <div class="height-display">
-    <span id="heightValue" class="height-value">0</span> <span>cm</span>
-    <div class="scanner"></div>
+  <div class="input-group">
+    <label>Nama Siswa:</label>
+    <input type="text" id="namaSiswa" placeholder="Masukkan nama siswa...">
   </div>
 
-  <div class="progress-bar">
-    <div class="progress-fill" id="progFill"></div>
+  <div class="height-value" id="heightDisplay">0</div>
+  <div class="unit">cm</div>
+
+  <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
   </div>
 
-  <div id="statusBox" class="status-box">Menunggu perintah scan...</div>
+  <button class="btn" id="btnScan">SCAN TINGGI</button>
 
-  <button class="btn" onclick="startScan()">🔍 Scan Sekarang</button>
+  <div class="status" id="statusInfo">Tunggu perintah scan...</div>
 </div>
 
-<footer>&copy; 2025 - Smart Height Detector - SMK KAL 1 Surabaya</footer>
-
 <script>
-function startScan(){
-  const name = document.getElementById("studentName").value || "Siswa";
+/* ==== PARTIKEL BACKGROUND (ANIMASI) ==== */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [];
 
-  // Dummy reading (nanti diganti fetch('/scan'))
-  const randomHeight = (150 + Math.random()*40).toFixed(1);
-
-  document.getElementById("heightValue").textContent = randomHeight;
-  document.getElementById("progFill").style.width = (randomHeight/220*100)+"%";
-  document.getElementById("statusBox").textContent = "Pengukuran berhasil!";
-
-  // Suara Google TTS (keluar dari HP)
-  const speak = new SpeechSynthesisUtterance(
-      `siswa ${name} memiliki tinggi ${randomHeight} centimeter`
-  );
-  speak.lang = "id-ID";
-  speechSynthesis.speak(speak);
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
+resize();
+window.onresize = resize;
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    s: Math.random() * 2 + 1,
+    d: Math.random() * 1
+  });
+}
+
+function animateBG() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = "rgba(59,130,246,0.6)";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
+    ctx.fill();
+    p.y += p.d;
+    if (p.y > canvas.height) p.y = 0;
+  });
+
+  requestAnimationFrame(animateBG);
+}
+animateBG();
+
+/* ==== FITUR SCAN (SIMULASI — ganti fetch saat dimasukkan ke ESP) ==== */
+document.getElementById("btnScan").addEventListener("click", () => {
+
+  let nama = document.getElementById("namaSiswa").value;
+  if (nama.trim() === "") {
+    alert("Nama siswa belum diisi!");
+    return;
+  }
+
+  // Demo (nanti diganti fetch('/scan'))
+  let tinggi = Math.random() * (180 - 120) + 120;
+
+  document.getElementById("heightDisplay").textContent = tinggi.toFixed(1);
+  document.getElementById("progressFill").style.width = (tinggi / 220 * 100) + "%";
+
+  document.getElementById("statusInfo").textContent =
+    `Siswa ${nama} memiliki tinggi ${tinggi.toFixed(1)} cm`;
+
+  // === SUARA GOOGLE ===
+  let speak = new SpeechSynthesisUtterance(
+    `Siswa ${nama}, dengan tinggi ${tinggi.toFixed(1)} centimeter`
+  );
+  speechSynthesis.speak(speak);
+});
 </script>
 
 </body>
